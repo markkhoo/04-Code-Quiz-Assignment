@@ -1,4 +1,16 @@
 
+li {
+    background-color: lightskyblue;
+    padding: 8px;
+
+}
+
+li button {
+    padding: 0px 8px;
+    margin: 0px 16px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
 
 .leButton{
     position: relative;
@@ -8,7 +20,8 @@
     padding: 8px 45px;
     border: 3px solid green;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 0.15em;
+    cursor: pointer;
 }
 
 .quizArea {
@@ -19,13 +32,7 @@
     width: 100%;
     border: 3px solid green;
 }
-/*
-#quizQuestion{
-    text-align: center;
-    border: 3px solid green;
-    clear: both;
-}   
-*/
+
 #HighScore {
     height: 50px;
     width: 350px;
