@@ -1,23 +1,43 @@
 
 
-.Quiz{
+.leButton{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 8px 45px;
+    border: 3px solid green;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.quizArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    clear: both;
+    width: 100%;
+    border: 3px solid green;
+}
+/*
+#quizQuestion{
     text-align: center;
     border: 3px solid green;
     clear: both;
 }   
-
+*/
 #HighScore {
-
     height: 50px;
-    width: 300px;
+    width: 350px;
     background-color: darksalmon;
     float: left;
 }
 
 #Timer {
-
     height: 50px;
-    width: 300px;
+    width: 350px;
     background-color: darksalmon;
     float: right;
+    text-align: center;
+    padding: 12px 0px;
 }
