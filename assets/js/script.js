@@ -71,6 +71,7 @@ function showButton() {
 // INITIALIZE
 function init() {
     timerSpan.textContent= "00:00:00";
+    showButton()
 };
 init();
 
@@ -90,7 +91,7 @@ quizChoice.addEventListener("click", function(event) {
     currentElement = event.target;
 
     // Game Loop
-    for (var i = 0; i < indexOfQuestions; 0) {
+    for (var i = 0; i <= indexOfQuestions; 0) {
         var currentQuestion = quizes[i].question;
         var currentAnswer = quizes[i].answer;
         var currentChoices = quizes[i].choices;
