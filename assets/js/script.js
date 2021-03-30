@@ -69,8 +69,8 @@ function NextSet() {
         displaySet(questionStart);
     } else {
         currentScore += globalTimer;
+        globalTimer = 0;
         quizChoice.innerHTML = "";
-        timerSpan.textContent= "00:00:00";
         enterHighScore();
     };
 };
@@ -85,6 +85,7 @@ function countdown() {
         // Game Ends when timer runs out
         if (globalTimer <=0) {
             clearInterval(timeInterval);
+            timerSpan.textContent = "00:00:00";
             quizChoice.innerHTML = "";
 
             // Enter High Screen redundant check (See NextSet(); )
