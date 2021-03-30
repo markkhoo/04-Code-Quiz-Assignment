@@ -1,6 +1,7 @@
 :root{
     --borderColor: navy;
-    --bodyColor: rgb(247, 206, 193);
+    --bodyColor: rgb(184, 208, 235);
+    --hoverColor: yellow;
 }
 
 body{
@@ -31,13 +32,14 @@ li:active{
     transform: translate(-50%, -50%);
     padding: 8px 45px;
     border: 3px solid var(--borderColor);
+    background-color: var(--bodyColor);
     font-weight: 700;
     letter-spacing: 0.15em;
     cursor: pointer;
 }
 
 .leButton:hover{
-    background-color: yellow;
+    background-color: var(--hoverColor);
 }
 
 .leButton:active{
@@ -50,7 +52,6 @@ li:active{
     align-items: center;
     clear: both;
     width: 100%;
-    border: 3px solid var(--borderColor);
 }
 
 #HighScore {
@@ -60,10 +61,28 @@ li:active{
     float: left;
 }
 
+#initials {
+    padding: 0 4px;
+    margin: 0 8px;
+}
+
 #gameStart {
     display: initial;
+    border: 3px solid var(--borderColor);
+    background-color: var(--bodyColor);
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 8px 45px;
     margin: 20px;
     cursor: pointer;
+}
+
+#gameStart:hover{
+    background-color: var(--hoverColor);
+}
+
+#quizQuestion{
+    padding: 10px;
 }
 
 #TimeWindow {

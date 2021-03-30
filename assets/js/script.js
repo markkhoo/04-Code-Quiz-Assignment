@@ -2,6 +2,7 @@
 // Pointers
 var gameStart = document.getElementById("gameStart");
 var timerSpan = document.getElementById("Timer");
+var quizArea = document.querySelector(".quizArea");
 var quizChoice = document.querySelector("#quizChoices");
 var quizQuestion = document.querySelector("#quizQuestion");
 
@@ -26,10 +27,9 @@ var quizes = {
 var indexOfQuestions = Object.keys(quizes).length - 1;
 
 // Other Global Variables
-var gameOver = true;
 var globalTimer = 0;
 var currentScore = 0;
-var currentElement;
+var questionStart = 0;
 
 // ALL Functions
 // Render Question for id="quizQuestion"
@@ -45,6 +45,50 @@ function renderListItems(content) {
     quizChoice.appendChild(li);
 };
 
+// Render Game Over and Submit Highscore
+function enterHighScore () {
+    quizQuestion.innerHTML = "Final Score: " + currentScore;
+    var endForm = document.createElement("form");
+
+    var formLabel = document.createElement("label")
+    formLabel.setAttribute("for", "initials");
+
+    var formInput = document.createElement("input");
+    formInput.setAttribute("type", "text");
+    formInput.setAttribute("id", "initials");
+    formInput.setAttribute("name", "initials");
+    formInput.setAttribute("value", "input initials here");
+
+    var formButton = document.createElement("input");
+    formButton.setAttribute("type","submit");
+    formButton.setAttribute("value","submit");
+
+    endForm.appendChild(formLabel);
+    endForm.appendChild(formInput);
+    endForm.appendChild(formButton);
+    quizArea.appendChild(endForm);
+};
+
+// Display Set
+function displaySet(i) {
+    renderQuestion(quizes[i].question);
+    renderListItems(quizes[i].choices[0]);
+    renderListItems(quizes[i].choices[1]);
+    renderListItems(quizes[i].choices[2]);
+    renderListItems(quizes[i].choices[3]);
+};
+
+// Next Set of Questions and Choices
+function NextSet() {
+    quizChoice.innerHTML = "";
+    questionStart++;
+    if (questionStart <= indexOfQuestions) {
+        displaySet(questionStart);
+    } else {
+        enterHighScore();
+    };
+};
+
 // Start Timer
 function countdown() {
     timerSpan.textContent = "00:0" + Math.floor(globalTimer / 60) + ":" + Math.floor((globalTimer % 60)/10) + (globalTimer % 10);;
@@ -53,7 +97,8 @@ function countdown() {
         timerSpan.textContent = "00:0" + Math.floor(globalTimer / 60) + ":" + Math.floor((globalTimer % 60)/10) + (globalTimer % 10);
         if (globalTimer <=0) {
             clearInterval(timeInterval);
-            gameOver = true;
+            quizChoice.innerHTML = "";
+            enterHighScore();
         }
     }, 1000);
 };
@@ -66,12 +111,13 @@ function showButton() {
     gameStart.style.setProperty('display', 'initial');
 };
 
-// Game Loop
-
 // INITIALIZE
 function init() {
     timerSpan.textContent= "00:00:00";
-    showButton()
+    showButton();
+    globalTimer = 0;
+    currentScore = 0;
+    questionStart = 0;
 };
 init();
 
@@ -79,38 +125,24 @@ init();
 gameStart.addEventListener("click", function(event) {
     // Start Settings
     event.preventDefault();
-    gameOver = false;
     globalTimer = 120;
     hideButton();
     countdown();
-
+    displaySet(questionStart);
 });
 
 // Choice Listener
 quizChoice.addEventListener("click", function(event) {
     currentElement = event.target;
 
-    // Game Loop
-    for (var i = 0; i <= indexOfQuestions; 0) {
-        var currentQuestion = quizes[i].question;
-        var currentAnswer = quizes[i].answer;
-        var currentChoices = quizes[i].choices;
-        renderQuestion(currentQuestion);
-        renderListItems(currentChoices[0]);
-        renderListItems(currentChoices[1]);
-        renderListItems(currentChoices[2]);
-        renderListItems(currentChoices[3]);
-        if (currentElement.textContent == currentAnswer) {
-            console.log("check correct");
-            quizChoice.innerHTML = "";
-            i++;
-        } else {
-            console.log("check wrong");
-            quizChoice.innerHTML = "";
-            i++;
-        };
+    if (currentElement.textContent == quizes[questionStart].answer) {
+        console.log("check correct");
+        currentScore += 100;
+    } else {
+        console.log("check wrong");
+        globalTimer -= 30;
     };
+    NextSet();
 });
 
 // TESTS
-renderListItems(quizes[0].choices[0]);
