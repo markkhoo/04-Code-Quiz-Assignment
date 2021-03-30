@@ -85,6 +85,9 @@ function NextSet() {
     if (questionStart <= indexOfQuestions) {
         displaySet(questionStart);
     } else {
+        currentScore += globalTimer;
+        quizChoice.innerHTML = "";
+        timerSpan.textContent= "00:00:00";
         enterHighScore();
     };
 };
@@ -95,10 +98,14 @@ function countdown() {
     var timeInterval = setInterval(function() {
         globalTimer--;
         timerSpan.textContent = "00:0" + Math.floor(globalTimer / 60) + ":" + Math.floor((globalTimer % 60)/10) + (globalTimer % 10);
+
         if (globalTimer <=0) {
             clearInterval(timeInterval);
             quizChoice.innerHTML = "";
-            enterHighScore();
+
+            if (questionStart == indexOfQuestions) {
+                enterHighScore();
+            };
         }
     }, 1000);
 };
@@ -113,7 +120,7 @@ function showButton() {
 
 // INITIALIZE
 function init() {
-    timerSpan.textContent= "00:00:00";
+    timerSpan.textContent = "00:00:00";
     showButton();
     globalTimer = 0;
     currentScore = 0;
@@ -128,6 +135,8 @@ gameStart.addEventListener("click", function(event) {
     globalTimer = 120;
     hideButton();
     countdown();
+    
+    // This displays the initial question set
     displaySet(questionStart);
 });
 
@@ -142,7 +151,6 @@ quizChoice.addEventListener("click", function(event) {
         console.log("check wrong");
         globalTimer -= 30;
     };
+    // Calling this function in the choice listener is essentially the game loop
     NextSet();
 });
-
-// TESTS
