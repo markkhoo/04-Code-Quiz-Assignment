@@ -6,7 +6,7 @@ var quizArea = document.querySelector(".quizArea");
 var quizChoice = document.querySelector("#quizChoices");
 var quizQuestion = document.querySelector("#quizQuestion");
 
-// Quiz Object is it ./quiz-objects.js 
+// Quiz Object is moved to ./quiz-objects.js 
 var indexOfQuestions = Object.keys(quizes).length - 1;
 
 // Other Global Variables
@@ -81,11 +81,13 @@ function countdown() {
     var timeInterval = setInterval(function() {
         globalTimer--;
         timerSpan.textContent = "00:0" + Math.floor(globalTimer / 60) + ":" + Math.floor((globalTimer % 60)/10) + (globalTimer % 10);
-
+        
+        // Game Ends when timer runs out
         if (globalTimer <=0) {
             clearInterval(timeInterval);
             quizChoice.innerHTML = "";
 
+            // Enter High Screen redundant check (See NextSet(); )
             if (questionStart == indexOfQuestions) {
                 enterHighScore();
             };
@@ -134,6 +136,6 @@ quizChoice.addEventListener("click", function(event) {
         console.log("check wrong");
         globalTimer -= 30;
     };
-    // Calling this function in the choice listener is essentially the game loop
+    // Calling function 'NextSet()' in the choice listener is essentially the game loop
     NextSet();
 });
