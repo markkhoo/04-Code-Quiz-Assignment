@@ -6,33 +6,22 @@ var quizChoice = document.querySelector("#quizChoices");
 var quizQuestion = document.querySelector("#quizQuestion");
 
 // Quiz Questions and Answers
+var setsOfQuestions = 3;
 var quizes = {
     set1: {
-        question: "question",
-        answers: {
-            answerCorrect: "ASD",
-            answerWrong02: "asd",
-            answerWrong03: "asd",
-            answerWrong04: "asd"
-        }
+        question: "question1",
+        answers: "ASD",
+        choices: ["ASD", "asd", "sad", "das"]
     },
     set2: {
-        question: "question",
-        answers: {
-            answerCorrect: "ASD",
-            answerWrong02: "asd",
-            answerWrong03: "asd",
-            answerWrong04: "asd"
-        }
+        question: "question2",
+        answers: "ASD",
+        choices: ["ASD", "asd", "sad", "das"]
     },
     set3: {
-        question: "question",
-        answers: {
-            answerCorrect: "ASD",
-            answerWrong02: "asd",
-            answerWrong03: "asd",
-            answerWrong04: "asd"
-        }
+        question: "question3",
+        answers: "ASD",
+        choices: ["ASD", "asd", "sad", "das"]
     }
 };
 
@@ -72,7 +61,19 @@ function countdown() {
     }, 1000);
 };
 
+// Hide and Show Button
+function hideButton() {
+    gameStart.style.setProperty('display', 'none');
+};
+function showButton() {
+    gameStart.style.setProperty('display', 'initial');
+};
+
 // INITIALIZE
+function init() {
+    timerSpan.textContent= "00:00:00";
+};
+init();
 
 // GAME START
 gameStart.addEventListener("click", function(event) {
@@ -80,11 +81,9 @@ gameStart.addEventListener("click", function(event) {
     event.preventDefault();
     gameOver = false;
     globalTimer = 120;
-    // Hide Button
-
-
-    // Start Timer
+    hideButton();
     countdown();
+
 
     console.log("Game Start Test");
 });
