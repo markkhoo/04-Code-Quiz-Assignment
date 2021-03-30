@@ -1,4 +1,4 @@
-// ALL Variables
+// --- ALL Variables -------------------------------------------------
 // Pointers
 var gameStart = document.getElementById("gameStart");
 var timerSpan = document.getElementById("Timer");
@@ -6,24 +6,7 @@ var quizArea = document.querySelector(".quizArea");
 var quizChoice = document.querySelector("#quizChoices");
 var quizQuestion = document.querySelector("#quizQuestion");
 
-// Quiz Questions and Answers
-var quizes = {
-    0: {
-        question: "question1",
-        answer: "ASD",
-        choices: ["ASD", "ssd1", "sad1", "das1"]
-    },
-    1: {
-        question: "question2",
-        answer: "ASD",
-        choices: ["ASD", "ssd2", "sad2", "das2"]
-    },
-    2: {
-        question: "question3",
-        answer: "ASD",
-        choices: ["ASD", "ssd3", "sad3", "das3"]
-    }
-};
+// Quiz Object is it ./quiz-objects.js 
 var indexOfQuestions = Object.keys(quizes).length - 1;
 
 // Other Global Variables
@@ -31,7 +14,7 @@ var globalTimer = 0;
 var currentScore = 0;
 var questionStart = 0;
 
-// ALL Functions
+// --- ALL Functions -------------------------------------------------
 // Render Question for id="quizQuestion"
 function renderQuestion(content) {
     document.getElementById("quizQuestion").innerHTML = content; 
@@ -78,7 +61,7 @@ function displaySet(i) {
     renderListItems(quizes[i].choices[3]);
 };
 
-// Next Set of Questions and Choices
+// Next Set of Questions and Choices (See quizChoice event listener)
 function NextSet() {
     quizChoice.innerHTML = "";
     questionStart++;
