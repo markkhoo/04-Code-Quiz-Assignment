@@ -40,7 +40,11 @@ li button {
     float: left;
 }
 
-#Timer {
+#gameStart {
+    margin: 20px;
+}
+
+#TimeWindow {
     height: 50px;
     width: 350px;
     background-color: darksalmon;
