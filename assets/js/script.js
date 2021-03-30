@@ -6,29 +6,30 @@ var quizChoice = document.querySelector("#quizChoices");
 var quizQuestion = document.querySelector("#quizQuestion");
 
 // Quiz Questions and Answers
-var setsOfQuestions = 3;
 var quizes = {
-    set1: {
+    0: {
         question: "question1",
-        answers: "ASD",
-        choices: ["ASD", "asd", "sad", "das"]
+        answer: "ASD",
+        choices: ["ASD", "ssd1", "sad1", "das1"]
     },
-    set2: {
+    1: {
         question: "question2",
-        answers: "ASD",
-        choices: ["ASD", "asd", "sad", "das"]
+        answer: "ASD",
+        choices: ["ASD", "ssd2", "sad2", "das2"]
     },
-    set3: {
+    2: {
         question: "question3",
-        answers: "ASD",
-        choices: ["ASD", "asd", "sad", "das"]
+        answer: "ASD",
+        choices: ["ASD", "ssd3", "sad3", "das3"]
     }
 };
+var indexOfQuestions = Object.keys(quizes).length - 1;
 
 // Other Global Variables
 var gameOver = true;
 var globalTimer = 0;
 var currentScore = 0;
+var currentElement;
 
 // ALL Functions
 // Render Question for id="quizQuestion"
@@ -40,11 +41,7 @@ function renderQuestion(content) {
 function renderListItems(content) {
     var li = document.createElement("li");
     li.textContent = content;
-
-    var button = document.createElement("button");
-    button.textContent = "<<<";
-
-    li.appendChild(button);
+    
     quizChoice.appendChild(li);
 };
 
@@ -69,6 +66,8 @@ function showButton() {
     gameStart.style.setProperty('display', 'initial');
 };
 
+// Game Loop
+
 // INITIALIZE
 function init() {
     timerSpan.textContent= "00:00:00";
@@ -84,14 +83,33 @@ gameStart.addEventListener("click", function(event) {
     hideButton();
     countdown();
 
+});
 
-    console.log("Game Start Test");
+// Choice Listener
+quizChoice.addEventListener("click", function(event) {
+    currentElement = event.target;
+
+    // Game Loop
+    for (var i = 0; i < indexOfQuestions; 0) {
+        var currentQuestion = quizes[i].question;
+        var currentAnswer = quizes[i].answer;
+        var currentChoices = quizes[i].choices;
+        renderQuestion(currentQuestion);
+        renderListItems(currentChoices[0]);
+        renderListItems(currentChoices[1]);
+        renderListItems(currentChoices[2]);
+        renderListItems(currentChoices[3]);
+        if (currentElement.textContent == currentAnswer) {
+            console.log("check correct");
+            quizChoice.innerHTML = "";
+            i++;
+        } else {
+            console.log("check wrong");
+            quizChoice.innerHTML = "";
+            i++;
+        };
+    };
 });
 
 // TESTS
-renderQuestion("Test Question");
-renderListItems("TEST1");
-renderListItems("TEST2");
-renderListItems("TEST3");
-renderListItems("TEST4");
-console.log("test at end");
+renderListItems(quizes[0].choices[0]);

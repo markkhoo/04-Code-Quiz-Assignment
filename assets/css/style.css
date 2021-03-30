@@ -10,14 +10,18 @@ body{
 li {
     background-color: lightskyblue;
     padding: 8px;
-
+    margin: 4px 4px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
 }
 
-li button {
-    padding: 0px 8px;
-    margin: 0px 16px;
-    letter-spacing: 0.1em;
-    cursor: pointer;
+li:hover{
+    transform: scale(0.98);
+}
+
+li:active{
+    transform: scale(0.95);
+    opacity: 0.80;
 }
 
 .leButton{
@@ -32,6 +36,14 @@ li button {
     cursor: pointer;
 }
 
+.leButton:hover{
+    background-color: yellow;
+}
+
+.leButton:active{
+    opacity: 0.80;
+}
+
 .quizArea {
     display: flex;
     flex-direction: column;
@@ -43,7 +55,7 @@ li button {
 
 #HighScore {
     height: 50px;
-    width: 350px;
+    width: 272px;
     background-color: var(--bodyColor);
     float: left;
 }
@@ -51,6 +63,7 @@ li button {
 #gameStart {
     display: initial;
     margin: 20px;
+    cursor: pointer;
 }
 
 #TimeWindow {
