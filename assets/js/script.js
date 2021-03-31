@@ -53,12 +53,22 @@ function enterHighScore () {
 };
 
 // Display Set
-function displaySet(i) {
-    renderQuestion(quizes[i].question);
-    renderListItems(quizes[i].choices[0]);
-    renderListItems(quizes[i].choices[1]);
-    renderListItems(quizes[i].choices[2]);
-    renderListItems(quizes[i].choices[3]);
+function displaySet(x) {
+    // Display Question
+    renderQuestion(quizes[x].question);
+
+    // Randomly Sort Choices
+    var randSeq = [];
+    for (var i = 0; i <= 3; i++) {
+        randSeq.push(i);
+    };
+    randSeq.sort(function(a, b){return 0.5 - Math.random()});
+
+    // Display Choices
+    renderListItems(quizes[x].choices[randSeq[0]]);
+    renderListItems(quizes[x].choices[randSeq[1]]);
+    renderListItems(quizes[x].choices[randSeq[2]]);
+    renderListItems(quizes[x].choices[randSeq[3]]);
 };
 
 // Next Set of Questions and Choices (See quizChoice event listener)
