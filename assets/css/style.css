@@ -1,6 +1,7 @@
 :root{
     --borderColor: navy;
     --bodyColor: rgb(184, 208, 235);
+    --buttonColor: white;
     --hoverColor: yellow;
 }
 
@@ -25,6 +26,14 @@ li:active{
     opacity: 0.80;
 }
 
+p {
+    padding: 8px 45px;
+    margin: 8px;
+    background-color: var(--hoverColor);
+    font-weight: 700;
+    letter-spacing: 0.10em;
+}
+
 .leButton{
     position: relative;
     top: 50%;
@@ -32,7 +41,7 @@ li:active{
     transform: translate(-50%, -50%);
     padding: 8px 45px;
     border: 3px solid var(--borderColor);
-    background-color: var(--bodyColor);
+    background-color: var(--buttonColor);
     font-weight: 700;
     letter-spacing: 0.15em;
     cursor: pointer;
@@ -69,7 +78,7 @@ li:active{
 #gameStart {
     display: initial;
     border: 3px solid var(--borderColor);
-    background-color: var(--bodyColor);
+    background-color: var(--buttonColor);
     font-weight: 700;
     letter-spacing: 0.15em;
     padding: 8px 45px;
