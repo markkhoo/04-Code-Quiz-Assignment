@@ -114,6 +114,7 @@ function init() {
 };
 init();
 
+// --- ALL Listeners -------------------------------------------------
 // GAME START
 gameStart.addEventListener("click", function(event) {
     // Start Settings
@@ -130,11 +131,12 @@ gameStart.addEventListener("click", function(event) {
 quizChoice.addEventListener("click", function(event) {
     currentElement = event.target;
 
+    // Checks if answer is corrent or wrong
     if (currentElement.textContent == quizes[questionStart].answer) {
-        console.log("check correct");
+        // Correct Answer
         currentScore += 100;
     } else {
-        console.log("check wrong");
+        // Wrong Answer
         globalTimer -= 30;
     };
     // Calling function 'NextSet()' in the choice listener is essentially the game loop
@@ -142,19 +144,38 @@ quizChoice.addEventListener("click", function(event) {
 });
 
 // Store Highscores
-document.querySelector(".quizArea").addEventListener("submit", function(event) {
-    event.preventDefault();
+document.querySelector(".quizArea").addEventListener("submit", function() {
+    // I want the webpage to refresh after submission
+    // event.preventDefault();
 
-    var initials = document.querySelector(".quizArea").children[3].children[1].textContent;
-    allScores = {
+    // Store the current score of this play through in am object
+    var initials = document.querySelector(".quizArea").lastChild.firstChild.nextSibling.value;
+    var finalScores = {
         names: initials,
         score: currentScore
     };
 
-    localStorage.setItem("allScores", JSON.stringify(allScores));
+    // Get the stored scores and parse it
+    var storedScores = JSON.parse(localStorage.getItem("allScores"));
 
-    console.log(initials);
-    console.log(currentScore);
+    // Check if saved scores exist or not
+    if(storedScores !== null) {
+
+        // Push the new object into the array of score objects
+        storedScores.push(finalScores);
+
+        // Stringify and store all saved scores
+        localStorage.setItem("allScores", JSON.stringify(storedScores));
+
+    } else {
+
+        // Push the new object into an empty array
+        var stringComplete2 = [];
+        stringComplete2.push(finalScores);
+
+        // Stringify and store all saved scores
+        localStorage.setItem("allScores", JSON.stringify(stringComplete2));
+    };
 });
 
 // TEST
