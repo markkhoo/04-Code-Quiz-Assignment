@@ -89,11 +89,11 @@ function countdown() {
             quizChoice.innerHTML = "";
 
             // Enter High Screen redundant check (See NextSet(); )
-            if (questionStart == indexOfQuestions) {
+            if (questionStart <= indexOfQuestions) {
                 enterHighScore();
             };
         }
-    }, 1000);
+    }, 10);
 };
 
 // Hide and Show Button
@@ -140,3 +140,21 @@ quizChoice.addEventListener("click", function(event) {
     // Calling function 'NextSet()' in the choice listener is essentially the game loop
     NextSet();
 });
+
+// Store Highscores
+document.querySelector(".quizArea").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var initials = document.querySelector(".quizArea").children[3].children[1].textContent;
+    allScores = {
+        names: initials,
+        score: currentScore
+    };
+
+    localStorage.setItem("allScores", JSON.stringify(allScores));
+
+    console.log(initials);
+    console.log(currentScore);
+});
+
+// TEST
