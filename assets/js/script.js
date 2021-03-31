@@ -93,7 +93,7 @@ function countdown() {
                 enterHighScore();
             };
         }
-    }, 10);
+    }, 1000);
 };
 
 // Hide and Show Button
@@ -135,9 +135,10 @@ quizChoice.addEventListener("click", function(event) {
     if (currentElement.textContent == quizes[questionStart].answer) {
         // Correct Answer
         currentScore += 100;
+        globalTimer += 5;
     } else {
         // Wrong Answer
-        globalTimer -= 30;
+        globalTimer -= 15;
     };
     // Calling function 'NextSet()' in the choice listener is essentially the game loop
     NextSet();
